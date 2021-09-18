@@ -17,6 +17,7 @@ const App:React.FC =()=> {
   const [loading, setLoading] = useState<Boolean>(false)
 
   const loadData = async()=>{
+    setLoading(true);
     const res = await fetch('https://fakestoreapi.com/products');
     const productData = await res.json();
     console.log({productData})
@@ -24,9 +25,9 @@ const App:React.FC =()=> {
     setLoading(false) 
   }
  useEffect(()=>{
-   setLoading(true);
+   
    try{
-     loadData();
+     loadData();  
    }catch(err){
      setLoading(false) 
      console.log({err})
@@ -44,8 +45,14 @@ if(loading) return <LinearProgress />
 
   return (
     <div className="App">
-     start
-     <Item item={data[0]} handleAddToCart={handleAddToCart} />
+
+     {data.length >0 && data.map(item=>{
+       return(
+
+         <Item item={item} handleAddToCart={handleAddToCart} />
+       )
+     })}
+     
     </div>
   );
 }
