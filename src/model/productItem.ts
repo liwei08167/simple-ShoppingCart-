@@ -5,6 +5,7 @@ interface ProductItem{
     description:string;
     category:string;
     image:string;
+    rating:{rate:number, count:number}
 
 }
 

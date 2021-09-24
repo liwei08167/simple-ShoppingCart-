@@ -1,0 +1,24 @@
+.cartContainer {
+  width: 20rem !important;
+  text-align: center;
+  margin: 0 1rem;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+.itemContainer {
+}
+
+.itemDetailContainer {
+}
+
+.priceContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.cartBtnGroup {
+}

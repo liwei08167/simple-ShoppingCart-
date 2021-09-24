@@ -1,60 +1,49 @@
-import {useState, useEffect}from 'react';
-// import Drawer from '@material-ui/core/Drawer';
-// import LinearProgress from '@material-ui/core/LinearProgress';
-// import Grid from '@material-ui/core/Grid';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import{Drawer, LinearProgress, Grid, Badge} from '@material-ui/core';
+import { useState } from "react";
+import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
+import { Drawer, LinearProgress, Grid, Badge, Button } from "@material-ui/core";
 
-import {Wrapper} from './App.styles';
-import Item from './Item/Item';
-import ProductItem from './model/productItem';
+import classes from "./App.module.css";
+import { useProductsCtx } from "./store/product-context";
+import AllItems from "./Item/AllItems";
+import ShoppingCart from "./Cart/ShoppingCart";
 
+const App: React.FC = () => {
+  const [cartOpen, setCartOpen] = useState<boolean>(false);
 
+  const { loading, allProducts, handleAddToCart, getTotalItems, totalAmount } =
+    useProductsCtx();
 
-const App:React.FC =()=> {
+  const toggleDrawer = () => {
+    setCartOpen(false);
+  };
 
-  const [data, setData] = useState<ProductItem[]>([]);
-  const [loading, setLoading] = useState<Boolean>(false)
-
-  const loadData = async()=>{
-    setLoading(true);
-    const res = await fetch('https://fakestoreapi.com/products');
-    const productData = await res.json();
-    console.log({productData})
-    setData(productData) 
-    setLoading(false) 
-  }
- useEffect(()=>{
-   
-   try{
-     loadData();  
-   }catch(err){
-     setLoading(false) 
-     console.log({err})
-   }
- }, [])
-
-
- const getTotalItems = ()=> null;
- const handleAddToCart = (clickedItem:ProductItem)=> null;
- const handleRemoveFromCart = ()=> null;
-
-
-if(loading) return <LinearProgress />
-
+  if (loading) return <LinearProgress />;
 
   return (
-    <div className="App">
+    <>
+      <Grid container spacing={3}>
+        <Grid item xs={12} className={classes.nav}>
+          <Grid item className={classes.cartBtn}>
+            <Drawer anchor="right" open={cartOpen} onClose={toggleDrawer}>
+              <ShoppingCart />
+            </Drawer>
+            <Button
+              onClick={() => setCartOpen(true)}
+              variant="text"
+              size="large"
+            >
+              <Badge badgeContent={0} color="error">
+                <AddShoppingCartIcon />
+              </Badge>
+            </Button>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} className={classes.searchBox}></Grid>
 
-     {data.length >0 && data.map(item=>{
-       return(
-
-         <Item item={item} handleAddToCart={handleAddToCart} />
-       )
-     })}
-     
-    </div>
+        <AllItems allProducts={allProducts} />
+      </Grid>
+    </>
   );
-}
+};
 
 export default App;

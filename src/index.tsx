@@ -1,20 +1,14 @@
-import ReactDOM from 'react-dom';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-import {QueryClient, QueryClientProvider} from 'react-query';
-
-const client = new QueryClient();
+import ReactDOM from "react-dom";
+import App from "./App";
+import { ProductContextProvider } from "./store/product-context";
 
 ReactDOM.render(
- <QueryClientProvider client={client}>
- <App />
- </QueryClientProvider>
- ,
-  document.getElementById('root')
+  <ProductContextProvider>
+    <App />
+  </ProductContextProvider>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
