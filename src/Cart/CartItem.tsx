@@ -10,6 +10,8 @@ type Props = {
 };
 
 const ShoppingCart: React.FC<Props> = ({ item }) => {
+  const { handleAddToCart, handleRemoveFromCart } = useProductsCtx();
+
   return (
     <>
       <Grid
@@ -25,24 +27,24 @@ const ShoppingCart: React.FC<Props> = ({ item }) => {
         <Grid item xs={8}>
           <div>{item.title}</div>
           <div className={classes.priceContainer}>
-            <h4>price:</h4>
-            <h4>total:</h4>
+            <h4>price: $ {item.price}</h4>
+            <h4>total: $ {item.price * item.amount}</h4>
           </div>
           <div className={classes.cartBtnGroup}>
             <Button
               size="small"
               disableElevation
               variant="contained"
-              //   onClick={() => removeFromCart(item.id)}
+              onClick={() => handleRemoveFromCart(item.id)}
             >
               -
             </Button>
-            <p>number amount</p>
+            <p>{item.amount}</p>
             <Button
               size="small"
               disableElevation
               variant="contained"
-              //   onClick={() => addToCart(item)}
+              onClick={() => handleAddToCart(item)}
             >
               +
             </Button>

@@ -39,6 +39,9 @@ const useStlyes = makeStyles({
     height: "5rem",
   },
 
+  descriptionDiv: {
+    overflowY: "auto",
+  },
   priceText: {
     marginTop: "1rem",
   },
@@ -81,7 +84,13 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
         </Button>
         <Divider />
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <Typography variant="body2" component="div" margin="1rem 0">
+          <Typography
+            variant="body2"
+            component="div"
+            margin="1rem 0"
+            maxHeight="10rem"
+            className={classes.descriptionDiv}
+          >
             {item.description}
           </Typography>
         </Collapse>

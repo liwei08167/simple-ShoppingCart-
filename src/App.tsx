@@ -6,12 +6,15 @@ import classes from "./App.module.css";
 import { useProductsCtx } from "./store/product-context";
 import AllItems from "./Item/AllItems";
 import ShoppingCart from "./Cart/ShoppingCart";
+import ProductItem from "./model/productItem";
+
+const getTotalItems = (items: ProductItem[]) =>
+  items.reduce((ack: number, item) => ack + item.amount, 0);
 
 const App: React.FC = () => {
   const [cartOpen, setCartOpen] = useState<boolean>(false);
 
-  const { loading, allProducts, handleAddToCart, getTotalItems, totalAmount } =
-    useProductsCtx();
+  const { loading, allProducts, cartItems } = useProductsCtx();
 
   const toggleDrawer = () => {
     setCartOpen(false);
@@ -32,7 +35,7 @@ const App: React.FC = () => {
               variant="text"
               size="large"
             >
-              <Badge badgeContent={0} color="error">
+              <Badge badgeContent={getTotalItems(cartItems)} color="error">
                 <AddShoppingCartIcon />
               </Badge>
             </Button>
@@ -45,8 +48,9 @@ const App: React.FC = () => {
           minHeight="13vh"
           marginBottom="1rem"
         ></Grid>
-
-        <AllItems allProducts={allProducts} />
+        <Grid item xs={12}>
+          <AllItems allProducts={allProducts} />
+        </Grid>
       </Grid>
     </>
   );
