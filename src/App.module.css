@@ -1,18 +1,12 @@
-.nav{
-    min-height: 8vh;
-    background-color: aqua;
-    margin-bottom: 1rem;
+.searchBox {
+  min-height: 13vh;
+  margin-bottom: 1rem;
+  background-color: blue;
 }
 
-.searchBox{
-    min-height: 13vh;
-    background-color: blue;
-    margin-bottom: 1rem;
-}
-
-.cartBtn{
-    right: 20px;
-    top: 20px;
-    position: fixed;
-    z-index: 100;
+.cartBtn {
+  right: 20px;
+  top: 20px;
+  position: fixed;
+  z-index: 100;
 }

@@ -1,4 +1,4 @@
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 
 import Item from "../Item/Item";
 import ProductItem from "../model/productItem";
@@ -16,7 +16,7 @@ const AllItems: React.FC<{ allProducts: ProductItem[] }> = ({
         spacing={5}
         direction="row"
         justifyContent="space-evenly"
-        style={{ padding: "1rem 4rem" }}
+        padding="1rem 4rem"
       >
         {allProducts?.length > 0 &&
           allProducts.map((item) => {

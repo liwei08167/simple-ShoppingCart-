@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import { Drawer, LinearProgress, Grid, Badge, Button } from "@material-ui/core";
+import { Drawer, LinearProgress, Grid, Badge, Button } from "@mui/material";
 
 import classes from "./App.module.css";
 import { useProductsCtx } from "./store/product-context";
@@ -22,7 +22,7 @@ const App: React.FC = () => {
   return (
     <>
       <Grid container spacing={3}>
-        <Grid item xs={12} className={classes.nav}>
+        <Grid item xs={12} minHeight="8vh" marginBottom="1rem">
           <Grid item className={classes.cartBtn}>
             <Drawer anchor="right" open={cartOpen} onClose={toggleDrawer}>
               <ShoppingCart />
@@ -38,7 +38,13 @@ const App: React.FC = () => {
             </Button>
           </Grid>
         </Grid>
-        <Grid item xs={12} className={classes.searchBox}></Grid>
+        <Grid
+          item
+          xs={12}
+          className={classes.searchBox}
+          minHeight="13vh"
+          marginBottom="1rem"
+        ></Grid>
 
         <AllItems allProducts={allProducts} />
       </Grid>

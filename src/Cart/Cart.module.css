@@ -1,18 +1,16 @@
-.cartContainer {
-  width: 20rem !important;
-  text-align: center;
-  margin: 0 1rem;
-}
-
 img {
-  width: 100%;
+  width: 60%;
   height: auto;
 }
 
 .itemContainer {
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.itemDetailContainer {
+.itemContainer::-webkit-scrollbar {
+  display: none;
 }
 
 .priceContainer {
@@ -21,4 +19,12 @@ img {
 }
 
 .cartBtnGroup {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button {
+  height: "2rem";
+  min-width: 3rem !important;
 }

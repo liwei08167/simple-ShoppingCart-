@@ -1,5 +1,4 @@
-import { Grid, Button } from "@mui/material";
-import Divider from "@material-ui/core/Divider";
+import { Grid, Button, Divider } from "@mui/material";
 
 import Item from "../Item/Item";
 import ProductItem from "../model/productItem";
@@ -23,7 +22,7 @@ const ShoppingCart: React.FC<Props> = ({ item }) => {
         <Grid item xs={4}>
           <img src={item.image} alt={item.title} />
         </Grid>
-        <Grid item xs={8} className={classes.itemDetailContainer}>
+        <Grid item xs={8}>
           <div>{item.title}</div>
           <div className={classes.priceContainer}>
             <h4>price:</h4>
@@ -38,7 +37,7 @@ const ShoppingCart: React.FC<Props> = ({ item }) => {
             >
               -
             </Button>
-            <p>number of amount</p>
+            <p>number amount</p>
             <Button
               size="small"
               disableElevation

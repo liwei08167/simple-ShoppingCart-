@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Typography from "@material-ui/core/Typography";
-import Collapse from "@material-ui/core/Collapse";
-import Divider from "@material-ui/core/Divider";
+import {
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Typography,
+  Collapse,
+  Divider,
+} from "@mui/material";
 import { KeyboardArrowRight, KeyboardArrowDown } from "@material-ui/icons";
 
 import ProductItem from "../model/productItem";
@@ -18,6 +20,9 @@ type Props = {
 };
 
 const useStlyes = makeStyles({
+  cardContainer: {
+    height: "100%",
+  },
   media: {
     height: "25vh",
     backgroundSize: "contain",
@@ -26,21 +31,19 @@ const useStlyes = makeStyles({
       transform: " scale(1.1)",
     },
   },
-  cardAction: {
-    justifyContent: "center",
-  },
-  descriptionDiv: {
-    margin: "1rem 0",
-  },
+
   titleDiv: {
     display: "flex",
     justifyContent: "space-between",
     flexWrap: "nowrap",
-    height: "100%",
+    height: "5rem",
   },
 
   priceText: {
     marginTop: "1rem",
+  },
+  cardAction: {
+    justifyContent: "center",
   },
 });
 
@@ -48,16 +51,22 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
   const classes = useStlyes();
   const [expanded, setExpanded] = useState(false);
   return (
-    <Card style={{ height: "100%" }}>
+    <Card className={classes.cardContainer}>
       <CardMedia
+        sx={{ margin: "1.5rem 3rem" }}
         className={classes.media}
-        style={{ margin: "1.5rem 3rem" }}
         image={item.image}
         title={item.title}
       />
       <CardContent>
         <div className={classes.titleDiv}>
-          <Typography gutterBottom variant="body1" component="div" align="left">
+          <Typography
+            gutterBottom
+            variant="body1"
+            component="div"
+            align="left"
+            marginRight="1rem"
+          >
             {item.title}
           </Typography>
 
@@ -72,11 +81,7 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
         </Button>
         <Divider />
         <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <Typography
-            variant="body2"
-            component="div"
-            className={classes.descriptionDiv}
-          >
+          <Typography variant="body2" component="div" margin="1rem 0">
             {item.description}
           </Typography>
         </Collapse>
