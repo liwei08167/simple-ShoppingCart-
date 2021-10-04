@@ -1,3 +1,9 @@
+.searchBox {
+  min-height: 13vh;
+  margin-bottom: 1rem;
+  /* background-color: blue; */
+}
+
 .cartBtn {
   right: 20px;
   top: 20px;

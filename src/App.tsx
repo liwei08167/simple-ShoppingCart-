@@ -4,9 +4,9 @@ import { Drawer, LinearProgress, Grid, Badge, Button } from "@mui/material";
 
 import classes from "./App.module.css";
 import { useProductsCtx } from "./store/product-context";
-import AllItems from "./Item/AllItems";
 import ShoppingCart from "./Cart/ShoppingCart";
 import ProductItem from "./model/productItem";
+import Search from "./Item/Search";
 
 const getTotalItems = (items: ProductItem[]) =>
   items.reduce((ack: number, item) => ack + item.amount, 0);
@@ -24,7 +24,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Grid container spacing={3}>
+      <Grid container>
         <Grid item xs={12} minHeight="8vh" marginBottom="1rem">
           <Grid item className={classes.cartBtn}>
             <Drawer anchor="right" open={cartOpen} onClose={toggleDrawer}>
@@ -41,9 +41,15 @@ const App: React.FC = () => {
             </Button>
           </Grid>
         </Grid>
-
-        <Grid item xs={12}>
-          <AllItems allProducts={allProducts} />
+        <Grid
+          item
+          xs={12}
+          className={classes.searchBox}
+          minHeight="13vh"
+          marginBottom="1rem"
+          paddingLeft="0"
+        >
+          <Search allProducts={allProducts} />
         </Grid>
       </Grid>
     </>

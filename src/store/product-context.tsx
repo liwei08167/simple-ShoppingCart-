@@ -6,6 +6,7 @@ type ProductContextObj = {
   allProducts: ProductItem[];
   cartItems: ProductItem[];
   loading: Boolean;
+  allCategories: string[] | [];
 
   handleAddToCart: (clickedItem: ProductItem) => void;
   handleRemoveFromCart: (id: number) => void;
@@ -15,7 +16,7 @@ export const ProductContext = React.createContext<ProductContextObj>({
   allProducts: [],
   cartItems: [],
   loading: false,
-
+  allCategories: [],
   handleAddToCart: (clickedItem: ProductItem) => {},
   handleRemoveFromCart: (id: number) => {},
 });
@@ -29,11 +30,24 @@ export const ProductContextProvider: React.FC = ({ children }) => {
   const [allProducts, setAllProducts] = useState<ProductItem[]>([]);
   const [cartItems, setCartItems] = useState([] as ProductItem[]);
 
+  const [allCategories, setallCategories] = useState(["all"]);
+
   const loadData = async () => {
     //   const res = await fetch('https://fakestoreapi.com/products');
     const res = await fetch("/data.json");
     const productData = await res.json();
-    console.log({ productData });
+
+    const categories =
+      productData.length > 0 &&
+      productData
+        .map((item: ProductItem) => {
+          return item.category;
+        })
+        .filter((category: string, index: number, arr: string[]) => {
+          return arr.indexOf(category) === index;
+        });
+
+    setallCategories((prev) => prev.concat(categories));
 
     // const filteredData = productData.filter((item:ProductItem)=>{
     //   return item.price >= test!.price && item.rating.rate >= test!.rating;
@@ -67,6 +81,7 @@ export const ProductContextProvider: React.FC = ({ children }) => {
       return [...prev, { ...clickedItem, amount: 1 }];
     });
   };
+
   const handleRemoveFromCart = (id: number) => {
     setCartItems((prev) => {
       const existingItem = prev.find((item) => item.id === id);
@@ -87,6 +102,7 @@ export const ProductContextProvider: React.FC = ({ children }) => {
     allProducts,
     cartItems,
     loading,
+    allCategories,
     handleAddToCart,
     handleRemoveFromCart,
   };

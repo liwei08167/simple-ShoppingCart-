@@ -24,7 +24,7 @@ const ShoppingCart: React.FC = () => {
 
       <Grid item xs={12} maxHeight="80vh" className={classes.itemContainer}>
         {cartItems.map((item) => {
-          return <CartItem item={item} />;
+          return <CartItem item={item} key={item.id} />;
         })}
       </Grid>
 
