@@ -18,7 +18,7 @@ type Props = {
   handleAddToCart: (clickItem: ProductItem) => void;
 };
 
-const useStlyes = makeStyles((theme) => ({
+const useStlyes = makeStyles({
   cardContainer: {
     height: "100%",
   },
@@ -53,7 +53,7 @@ const useStlyes = makeStyles((theme) => ({
   cardAction: {
     justifyContent: "center",
   },
-}));
+});
 
 const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
   const classes = useStlyes();
