@@ -33,12 +33,7 @@ export const ProductContextProvider: React.FC = ({ children }) => {
     //   const res = await fetch('https://fakestoreapi.com/products');
     const res = await fetch("/data.json");
     const productData = await res.json();
-    console.log({ productData });
 
-    // const filteredData = productData.filter((item:ProductItem)=>{
-    //   return item.price >= test!.price && item.rating.rate >= test!.rating;
-    // })
-    // console.log({filteredData}, filteredData.length)
     setAllProducts(productData);
     setLoading(false);
   };

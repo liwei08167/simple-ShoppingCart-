@@ -1,3 +1,12 @@
+## tech used:
+
+React, hooks, useContext hook, material-ui, react-router. backend api data originally is from https://fakestoreapi.com/products
+
+## User tip:
+
+- master branch: user can freely add and remove shopping items in the shopping cart.
+- addSearchBar branch: add search bar functions based on categories, prices and rating.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
