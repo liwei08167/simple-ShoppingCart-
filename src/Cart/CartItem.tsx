@@ -1,6 +1,5 @@
 import { Grid, Button, Divider } from "@mui/material";
 
-import Item from "../Item/Item";
 import ProductItem from "../model/productItem";
 import { useProductsCtx } from "../store/product-context";
 import classes from "./Cart.module.css";

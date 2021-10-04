@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Button,
@@ -7,12 +6,10 @@ import {
   CardContent,
   CardMedia,
   Typography,
-  Collapse,
   Divider,
   Popover,
 } from "@mui/material";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
-import { KeyboardArrowRight, KeyboardArrowDown } from "@material-ui/icons";
 
 import ProductItem from "../model/productItem";
 

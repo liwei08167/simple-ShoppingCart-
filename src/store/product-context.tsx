@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import Item from "../Item/Item";
 
 import ProductItem from "../model/productItem";
 
