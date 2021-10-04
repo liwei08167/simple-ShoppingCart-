@@ -9,7 +9,9 @@ import {
   Typography,
   Collapse,
   Divider,
+  Popover,
 } from "@mui/material";
+import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";
 import { KeyboardArrowRight, KeyboardArrowDown } from "@material-ui/icons";
 
 import ProductItem from "../model/productItem";
@@ -19,7 +21,7 @@ type Props = {
   handleAddToCart: (clickItem: ProductItem) => void;
 };
 
-const useStlyes = makeStyles({
+const useStlyes = makeStyles((theme) => ({
   cardContainer: {
     height: "100%",
   },
@@ -33,10 +35,16 @@ const useStlyes = makeStyles({
   },
 
   titleDiv: {
-    display: "flex",
-    justifyContent: "space-between",
-    flexWrap: "nowrap",
-    height: "5rem",
+    height: "6rem",
+    "@media (max-width: 1100px) and (min-width:600px)": {
+      height: "7rem",
+    },
+  },
+  title: {
+    "@media (max-width: 1100px) and (min-width:600px)": {
+      fontWeight: "400",
+      lineHeight: "1.2",
+    },
   },
 
   descriptionDiv: {
@@ -48,11 +56,11 @@ const useStlyes = makeStyles({
   cardAction: {
     justifyContent: "center",
   },
-});
+}));
 
 const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
   const classes = useStlyes();
-  const [expanded, setExpanded] = useState(false);
+
   return (
     <Card className={classes.cardContainer}>
       <CardMedia
@@ -65,35 +73,44 @@ const Item: React.FC<Props> = ({ item, handleAddToCart }) => {
         <div className={classes.titleDiv}>
           <Typography
             gutterBottom
-            variant="body1"
+            variant="h6"
             component="div"
             align="left"
-            marginRight="1rem"
+            className={classes.title}
           >
             {item.title}
           </Typography>
-
-          <Typography variant="h5" component="h2" align="right">
-            ${item.price}
-          </Typography>
         </div>
-        <Divider />
-        <Button variant="text" fullWidth onClick={() => setExpanded(!expanded)}>
-          <span>description</span>
-          {expanded ? <KeyboardArrowDown /> : <KeyboardArrowRight />}
-        </Button>
-        <Divider />
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
-          <Typography
-            variant="body2"
-            component="div"
-            margin="1rem 0"
-            maxHeight="10rem"
-            className={classes.descriptionDiv}
-          >
-            {item.description}
-          </Typography>
-        </Collapse>
+        <Typography variant="h5" component="h1" align="right" gutterBottom>
+          ${item.price}
+        </Typography>
+
+        <PopupState variant="popover" popupId="demo-popup-popover">
+          {(popupState) => (
+            <div>
+              <Divider />
+              <Button variant="text" fullWidth {...bindTrigger(popupState)}>
+                description
+              </Button>
+              <Divider />
+              <Popover
+                {...bindPopover(popupState)}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "center",
+                }}
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "center",
+                }}
+              >
+                <Typography sx={{ p: 2 }} maxWidth="20rem">
+                  {item.description}
+                </Typography>
+              </Popover>
+            </div>
+          )}
+        </PopupState>
       </CardContent>
 
       <CardActions className={classes.cardAction}>

@@ -41,13 +41,7 @@ const App: React.FC = () => {
             </Button>
           </Grid>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          className={classes.searchBox}
-          minHeight="13vh"
-          marginBottom="1rem"
-        ></Grid>
+
         <Grid item xs={12}>
           <AllItems allProducts={allProducts} />
         </Grid>
